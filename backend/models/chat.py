@@ -1,3 +1,7 @@
+"""
+테스트 전용 모델 - React 클라이언트에서는 직접 사용하지 않음
+agent.py의 통합 에이전트 기능으로 대체됨
+"""
 from typing import Optional, List, Dict, Any
 from pydantic import BaseModel, Field
 
