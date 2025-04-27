@@ -25,7 +25,7 @@ logger = logging.getLogger("email_api")
 router = APIRouter()
 
 # 이메일 데이터 파일 경로
-EMAIL_DATA_PATH = os.path.join(os.path.dirname(os.path.dirname(__file__)), "data", "emails.json")
+EMAIL_DATA_PATH = os.path.join(os.path.dirname(os.path.dirname(__file__)), "datas", "emails.json")
 
 def load_emails():
     """이메일 데이터 로드"""

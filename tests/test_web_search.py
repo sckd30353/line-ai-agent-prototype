@@ -8,7 +8,7 @@ import sys
 # 상위 디렉토리를 파이썬 경로에 추가 (config 모듈을 임포트하기 위함)
 sys.path.append(os.path.dirname(os.path.dirname(__file__)))
 from backend.config import (
-    LOG_LEVEL, CHAT_ENDPOINT, API_PREFIX, DEBUG
+    LOG_LEVEL, API_PREFIX, DEBUG
 )
 
 # 로깅 설정 - 터미널에만 출력
@@ -19,24 +19,25 @@ logging.basicConfig(
         logging.StreamHandler()
     ]
 )
-logger = logging.getLogger("web_search_test")
+logger = logging.getLogger("agent_test")
 
 # API 엔드포인트 설정
 BASE_URL = "http://localhost:8000"  # 서버 주소와 포트에 맞게 수정하세요
-CHAT_URL = f"{BASE_URL}{CHAT_ENDPOINT}"
+AGENT_URL = f"{BASE_URL}{API_PREFIX}/agent"
 
-def test_web_search():
-    """웹 검색 기능이 제대로 작동하는지 테스트합니다."""
+def test_agent():
+    """통합 에이전트 기능을 테스트합니다."""
     
-    logger.info("웹 검색 기능 테스트를 시작합니다...")
+    logger.info("통합 에이전트 테스트를 시작합니다...")
     logger.info(f"디버그 모드: {DEBUG}")
     logger.info(f"로그 레벨: {LOG_LEVEL}")
-    logger.info(f"API 엔드포인트: {CHAT_URL}")
+    logger.info(f"API 엔드포인트: {AGENT_URL}")
     
     # 테스트할 질문 목록
     test_questions = [
         "안녕하세요",
         "오늘 날씨 알려줘",
+        "오늘 온 이메일을 알려줘",
     ]
     
     # 각 질문에 대해 테스트 실행
@@ -62,7 +63,7 @@ def test_web_search():
         try:
             # API 요청 보내기
             response = requests.post(
-                CHAT_URL,
+                AGENT_URL,
                 json=request_data,
                 headers={"Content-Type": "application/json"}
             )
@@ -88,4 +89,4 @@ def test_web_search():
     logger.info("테스트가 완료되었습니다.")
 
 if __name__ == "__main__":
-    test_web_search() 
+    test_agent()
