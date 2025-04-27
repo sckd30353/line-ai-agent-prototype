@@ -167,7 +167,7 @@ async def agent_endpoint(request: ChatRequest = Body(...)):
     통합 에이전트 엔드포인트 - 모든 사용자 질문을 처리합니다.
     """
     try:
-        logger.info(f"에이전트 요청 수신: {request.message[:50]}...")
+        logger.info(f"에이전트 요청 수신: {request.message[:50]}... (대화 ID: {request.conversation_id})")
         
         # 대화 ID가 없으면 새로 생성
         conversation_id = request.conversation_id or str(uuid.uuid4())

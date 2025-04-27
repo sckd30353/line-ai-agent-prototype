@@ -3,12 +3,14 @@ import ChatContainer from './components/Chat/ChatContainer';
 import ChatInput from './components/Chat/ChatInput';
 import EmailButton from './components/Email/EmailButton';
 import EmailList from './components/Email/EmailList';
+import { sendMessage } from './api';
 import './styles/index.css';
 
 function App() {
   const [messages, setMessages] = useState([]);
   const [loading, setLoading] = useState(false);
   const [showEmailList, setShowEmailList] = useState(false);
+  const [conversationId, setConversationId] = useState(null);
   
   // 메시지 전송 처리 함수
   const handleSendMessage = async (text) => {
@@ -26,21 +28,37 @@ function App() {
     setLoading(true);
     
     try {
-      // TODO: API 호출 로직 구현
-      // 임시 응답 (API 연동 전까지 사용)
-      setTimeout(() => {
-        const aiResponse = {
-          id: Date.now() + 1,
-          text: `이것은 "${text}"에 대한 응답입니다.`,
-          sender: 'ai',
-          timestamp: new Date().toISOString()
-        };
-        setMessages(prev => [...prev, aiResponse]);
-        setLoading(false);
-      }, 1000);
+      // 백엔드 API 호출
+      const response = await sendMessage(text, conversationId);
+      
+      // AI 응답 추가
+      const aiResponse = {
+        id: Date.now() + 1,
+        text: response.message,
+        sender: 'ai',
+        timestamp: new Date().toISOString()
+      };
+      
+      setMessages(prev => [...prev, aiResponse]);
+      
+      // 대화 ID 저장
+      if (response.conversation_id) {
+        setConversationId(response.conversation_id);
+      }
       
     } catch (error) {
       console.error('메시지 전송 오류:', error);
+      
+      // 오류 메시지 추가
+      const errorMessage = {
+        id: Date.now() + 1,
+        text: '메시지 전송 중 오류가 발생했습니다. 다시 시도해주세요.',
+        sender: 'ai',
+        timestamp: new Date().toISOString()
+      };
+      
+      setMessages(prev => [...prev, errorMessage]);
+    } finally {
       setLoading(false);
     }
   };
