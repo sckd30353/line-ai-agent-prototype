@@ -9,7 +9,7 @@ sys.path.append(os.path.dirname(os.path.dirname(__file__)))
 from backend.config import (
     SERVER_HOST, SERVER_PORT, DEBUG, LOG_LEVEL, API_PREFIX
 )
-from backend.routers import chat
+from backend.routers import chat, email
 
 # 로깅 설정
 logging.basicConfig(
@@ -37,6 +37,7 @@ logger.info("CORS 미들웨어 설정 완료")
 
 # 라우터 등록
 app.include_router(chat.router, prefix=f"{API_PREFIX}/chat", tags=["chat"])
+app.include_router(email.router, prefix=f"{API_PREFIX}/email", tags=["email"])
 logger.info(f"채팅 라우터 등록 완료 (경로: {API_PREFIX}/chat)")
 
 @app.get("/")
