@@ -58,7 +58,6 @@ async def chat(request: ChatRequest = Body(...)):
                         "type": "web_search",
                         "user_location": WEB_SEARCH_LOCATION
                     }],
-                    tool_choice={"type": "web_search"},  # 웹 검색 도구를 강제로 사용
                     instructions=WEB_SEARCH_INSTRUCTIONS,
                     input=request.message
                 )
