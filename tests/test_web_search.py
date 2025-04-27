@@ -6,7 +6,7 @@ import os
 import sys
 
 # 상위 디렉토리를 파이썬 경로에 추가 (config 모듈을 임포트하기 위함)
-sys.path.append(os.path.dirname(__file__))
+sys.path.append(os.path.dirname(os.path.dirname(__file__)))
 from backend.config import (
     LOG_LEVEL, CHAT_ENDPOINT, API_PREFIX, DEBUG
 )
@@ -35,8 +35,8 @@ def test_web_search():
     
     # 테스트할 질문 목록
     test_questions = [
-        "오늘 날씨 어때?",
-        "오늘 주요 뉴스 알려줘",
+        "안녕하세요",
+        "오늘 날씨 알려줘",
     ]
     
     # 각 질문에 대해 테스트 실행
