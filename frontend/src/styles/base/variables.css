@@ -1,0 +1,37 @@
+:root {
+    /* 색상 */
+    --color-background: #b0c7e9; /* 라인 채팅 배경색 */
+    --color-user-bubble: #a3e48b; /* 사용자 메시지 배경색 */
+    --color-ai-bubble: #ffffff; /* AI 메시지 배경색 */
+    --color-text-primary: #333333; /* 주요 텍스트 색상 */
+    --color-text-secondary: #666666; /* 보조 텍스트 색상 */
+    --color-line-primary: #06c755; /* 라인 대표 색상 */
+    --color-border: #e6e6e6; /* 경계선 색상 */
+    
+    /* 크기 */
+    --header-height: 60px;
+    --footer-height: 60px;
+    
+    /* 간격 */
+    --spacing-xs: 4px;
+    --spacing-sm: 8px;
+    --spacing-md: 16px;
+    --spacing-lg: 24px;
+    
+    /* 그림자 */
+    --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.1);
+    --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+    --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
+    
+    /* 폰트 크기 */
+    --font-size-xs: 12px;
+    --font-size-sm: 14px;
+    --font-size-md: 16px;
+    --font-size-lg: 18px;
+    --font-size-xl: 20px;
+    
+    /* 애니메이션 */
+    --transition-fast: 0.2s;
+    --transition-normal: 0.3s;
+    --transition-slow: 0.5s;
+  }
