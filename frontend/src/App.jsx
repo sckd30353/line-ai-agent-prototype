@@ -72,7 +72,7 @@ function App() {
     <div className="app">
       <header className="header">
         <div className="header-logo">
-          <img src="/line-icon.svg" alt="Line" className="line-icon" />
+          <img src="/line.png" alt="Line" className="line-icon" />
           <h1>Line AI Agent</h1>
         </div>
       </header>
