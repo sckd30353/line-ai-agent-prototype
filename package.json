@@ -1,0 +1,14 @@
+{
+  "name": "line-ai-agent-prototype",
+  "version": "1.0.0",
+  "description": "Line AI Agent Prototype",
+  "scripts": {
+    "frontend": "cd frontend && npm run dev",
+    "backend": "cd backend && python app.py",
+    "dev": "concurrently \"npm run frontend\" \"npm run backend\"",
+    "install-all": "npm install && cd frontend && npm install"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+} 
