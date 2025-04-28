@@ -13,11 +13,6 @@ const ChatBubble = ({ message }) => {
   return (
     <div className={`message-group ${isUser ? 'user' : 'ai'}`}>
       <div className={`message-bubble ${isUser ? 'user' : 'ai'}`}>
-        {!isUser && (
-          <div className="avatar">
-            <img src="https://via.placeholder.com/36" alt="AI Avatar" />
-          </div>
-        )}
         <div className="message-content">{text}</div>
       </div>
       <div className={`timestamp ${isUser ? 'user' : 'ai'}`}>

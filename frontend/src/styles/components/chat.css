@@ -4,9 +4,29 @@
 .chat-container {
     display: flex;
     flex-direction: column;
-    height: 100%;
+    height: auto;
+    max-height: 80vh;
+    flex: 1; /* 추가: 부모 요소의 공간을 채우도록 설정 */
     overflow-y: auto;
     padding-bottom: var(--spacing-md);
+    max-width: 768px; /* 모바일 비율에 맞는 최대 너비 설정 */
+    margin: 0 auto; /* 화면 중앙 정렬 */
+    scrollbar-width: none; /* Firefox에서 스크롤바 숨기기 */
+    -ms-overflow-style: none; /* IE/Edge에서 스크롤바 숨기기 */
+  }
+  
+  /* 스크롤바 숨기기 (Chrome, Safari) */
+  .chat-container::-webkit-scrollbar {
+    display: none;
+  }
+  
+  /* 화면이 큰 경우 채팅 컨테이너 높이 제한 */
+  @media (min-width: 768px) {
+    .chat-container {
+      max-height: 800px;
+      height: auto;
+      flex: 0 1 auto; /* flex-grow를 0으로 설정하여 자동 확장 방지 */
+    }
   }
   
   /* 메시지 목록 */
@@ -50,22 +70,11 @@
     background-color: var(--color-ai-bubble);
     color: var(--color-text-primary);
     border-top-left-radius: 4px;
-    display: flex;
   }
   
-  /* 아바타 */
+  /* 아바타 - 더 이상 사용하지 않음 */
   .avatar {
-    width: 36px;
-    height: 36px;
-    border-radius: 50%;
-    margin-right: var(--spacing-sm);
-    overflow: hidden;
-  }
-  
-  .avatar img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+    display: none;
   }
   
   /* 타임스탬프 */
@@ -166,3 +175,86 @@
     opacity: 0.5;
     cursor: not-allowed;
   }
+
+/* 날짜 구분선 */
+.date-divider {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: var(--spacing-md) 0;
+}
+
+.date-divider span {
+  background-color: rgba(67, 96, 132, 0.25);
+  color: #333333;
+  padding: var(--spacing-xs) var(--spacing-md);
+  border-radius: 16px;
+  font-size: var(--font-size-sm);
+  text-align: center;
+}
+
+/* 빈 채팅 상태 */
+.empty-chat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: var(--spacing-lg) var(--spacing-lg);
+  background: linear-gradient(to bottom, rgba(42, 69, 101, 0.9), rgba(32, 52, 80, 0.95));
+  border-radius: 18px;
+  margin: 30px auto; /* 위치를 아래로 이동 */
+  max-width: 92%;
+  width: 310px;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.empty-chat h2 {
+  font-size: 20px; /* 폰트 크기 증가 */
+  color: #FFFFFF; /* 라인 연두색 더 밝게 */
+  margin-bottom: 12px; /* 제목과 리스트 간 간격 축소 */
+  font-weight: 600;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+  letter-spacing: -0.3px;
+}
+
+.empty-chat p {
+  color: #FFFFFF;
+  margin-bottom: 0; /* p 태그가 비어있으므로 간격 제거 */
+  font-size: 14px;
+  opacity: 0.95;
+  line-height: 1.4;
+}
+
+.empty-chat ul {
+  list-style-type: none;
+  padding: 0;
+  text-align: center;
+  width: 100%;
+  margin-top: 0;
+  display: inline-block;
+  max-width: 240px; /* 가장 긴 리스트 항목에 맞춤 */
+  margin: 0 auto;
+}
+
+.empty-chat li {
+  padding: 6px 0;
+  position: relative;
+  color: #FFFFFF;
+  font-size: 16px;
+  line-height: 1.5;
+  opacity: 0.95;
+  text-align: left;
+  padding-left: 40px; /* 불릿을 위한 공간 약간 늘림 */
+}
+
+.empty-chat li:before {
+  content: "•";
+  color: #6DD400;
+  font-weight: bold;
+  font-size: 20px; /* 불릿 크기 약간 키움 */
+  position: absolute;
+  left: 20px;
+  top: 4px;
+}
